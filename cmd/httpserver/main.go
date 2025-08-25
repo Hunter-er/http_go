@@ -43,7 +43,11 @@ func handler(w *response.Writer, req *request.Request) {
 		return
 	}
 	if req.RequestLine.RequestTarget == "/yourproblem" {
-		handler200(w, req)
+		handler400(w, req) //handler200
+		return
+	}
+	if req.RequestLine.RequestTarget == "/" {
+		handler200(w, req) //added
 		return
 	}
 	if req.RequestLine.RequestTarget == "/myproblem" {
@@ -62,7 +66,7 @@ func handler400(w *response.Writer, _ *request.Request) {
 </head>
 <body>
 <h1>Bad Request</h1>
-<p>Your request honestly kinda sucked.</p>
+<p>Your request honestly kinda sucked.</p>>
 </body>
 </html>
 `)
